@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="595" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="a0b790bb-5f96-4523-991e-452824ecaccc">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="8"/>
+	<parameter name="no_transaksi" class="java.lang.String">
+		<defaultValueExpression><![CDATA[T-19070002]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT
+     penerimaan_cucian.`id_order` AS penerimaan_cucian_id_order,
+     penerimaan_cucian.`no_order` AS penerimaan_cucian_no_order,
+     penerimaan_cucian.`id_pelanggan` AS penerimaan_cucian_id_pelanggan,
+     penerimaan_cucian.`tgl_penerimaan` AS penerimaan_cucian_tgl_penerimaan,
+     penerimaan_cucian.`tgl_pengambilan` AS penerimaan_cucian_tgl_pengambilan,
+     penerimaan_cucian.`total` AS penerimaan_cucian_total,
+     penerimaan_cucian.`status_cucian` AS penerimaan_cucian_status_cucian,
+     penerimaan_cucian.`estimasi_pengerjaan` AS penerimaan_cucian_estimasi_pengerjaan,
+     transaksi.`id_transaksi` AS transaksi_id_transaksi,
+     transaksi.`no_transaksi` AS transaksi_no_transaksi,
+     transaksi.`id_order` AS transaksi_id_order,
+     transaksi.`status` AS transaksi_status,
+     transaksi.`tanggal_transaksi` AS transaksi_tanggal_transaksi,
+     detail_penerimaan_cucian.`id_order` AS detail_penerimaan_cucian_id_order,
+     detail_penerimaan_cucian.`id_cucian` AS detail_penerimaan_cucian_id_cucian,
+     detail_penerimaan_cucian.`jumlah` AS detail_penerimaan_cucian_jumlah,
+     detail_penerimaan_cucian.`subtotal` AS detail_penerimaan_cucian_subtotal,
+     jenis_cucian.`id_cucian` AS jenis_cucian_id_cucian,
+     jenis_cucian.`nama_cucian` AS jenis_cucian_nama_cucian,
+     jenis_cucian.`satuan` AS jenis_cucian_satuan,
+     jenis_cucian.`biaya_cucian` AS jenis_cucian_biaya_cucian,
+     pelanggan.`id_pelanggan` AS pelanggan_id_pelanggan,
+     pelanggan.`kode_pelanggan` AS pelanggan_kode_pelanggan,
+     pelanggan.`nama_pelanggan` AS pelanggan_nama_pelanggan,
+     pelanggan.`alamat` AS pelanggan_alamat,
+     pelanggan.`no_telepon_pelanggan` AS pelanggan_no_telepon_pelanggan
+FROM
+     `penerimaan_cucian` penerimaan_cucian INNER JOIN `transaksi` transaksi ON penerimaan_cucian.`id_order` = transaksi.`id_order`
+     INNER JOIN `detail_penerimaan_cucian` detail_penerimaan_cucian ON penerimaan_cucian.`id_order` = detail_penerimaan_cucian.`id_order`
+     INNER JOIN `pelanggan` pelanggan ON penerimaan_cucian.`id_pelanggan` = pelanggan.`id_pelanggan`
+     INNER JOIN `jenis_cucian` jenis_cucian ON detail_penerimaan_cucian.`id_cucian` = jenis_cucian.`id_cucian`
+WHERE
+     transaksi.no_transaksi = $P{no_transaksi}]]>
+	</queryString>
+	<field name="penerimaan_cucian_id_order" class="java.lang.Integer"/>
+	<field name="penerimaan_cucian_no_order" class="java.lang.String"/>
+	<field name="penerimaan_cucian_id_pelanggan" class="java.lang.Integer"/>
+	<field name="penerimaan_cucian_tgl_penerimaan" class="java.sql.Date"/>
+	<field name="penerimaan_cucian_tgl_pengambilan" class="java.sql.Date"/>
+	<field name="penerimaan_cucian_total" class="java.lang.Double"/>
+	<field name="penerimaan_cucian_status_cucian" class="java.lang.String"/>
+	<field name="penerimaan_cucian_estimasi_pengerjaan" class="java.lang.Integer"/>
+	<field name="transaksi_id_transaksi" class="java.lang.Integer"/>
+	<field name="transaksi_no_transaksi" class="java.lang.String"/>
+	<field name="transaksi_id_order" class="java.lang.Integer"/>
+	<field name="transaksi_status" class="java.lang.String"/>
+	<field name="transaksi_tanggal_transaksi" class="java.sql.Date"/>
+	<field name="detail_penerimaan_cucian_id_order" class="java.lang.Integer"/>
+	<field name="detail_penerimaan_cucian_id_cucian" class="java.lang.Integer"/>
+	<field name="detail_penerimaan_cucian_jumlah" class="java.lang.Integer"/>
+	<field name="detail_penerimaan_cucian_subtotal" class="java.lang.Double"/>
+	<field name="jenis_cucian_id_cucian" class="java.lang.Integer"/>
+	<field name="jenis_cucian_nama_cucian" class="java.lang.String"/>
+	<field name="jenis_cucian_satuan" class="java.lang.String"/>
+	<field name="jenis_cucian_biaya_cucian" class="java.lang.Integer"/>
+	<field name="pelanggan_id_pelanggan" class="java.lang.Integer"/>
+	<field name="pelanggan_kode_pelanggan" class="java.lang.String"/>
+	<field name="pelanggan_nama_pelanggan" class="java.lang.String"/>
+	<field name="pelanggan_alamat" class="java.lang.String"/>
+	<field name="pelanggan_no_telepon_pelanggan" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="113" splitType="Stretch">
+			<staticText>
+				<reportElement x="172" y="65" width="215" height="15" uuid="aa1aa200-46c8-49f3-95b1-dc39b8ef95c8"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[Jalan Palakali, Kukusan, Depok]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="196" y="80" width="170" height="21" uuid="7cfdade1-6ba4-436c-9118-c8d0f1b456c0"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[No.telpon : 081315946757]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="196" y="50" width="170" height="15" uuid="c1dc40fc-b7fa-4baa-9d21-75883853f426"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[Laundry Kiloan dan Satuan]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="89" y="19" width="360" height="31" uuid="e7749290-de02-4df3-be30-382c0df1dd08"/>
+				<textElement textAlignment="Center">
+					<font fontName="Bodoni MT Black" size="24"/>
+				</textElement>
+				<text><![CDATA[Le Nori Laundry]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="15" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="101" splitType="Stretch">
+			<staticText>
+				<reportElement x="10" y="40" width="142" height="20" uuid="8e8d1f60-5852-4b63-aef5-ba0763b4a978"/>
+				<textElement>
+					<font fontName="Times New Roman" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[TANGGAL TRANSAKSI]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="10" y="10" width="100" height="20" uuid="2f3fbccd-693c-4622-9eaa-6912dc743c2d"/>
+				<textElement>
+					<font fontName="Times New Roman" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[NO TRANSAKSI]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="287" y="72" width="111" height="20" backcolor="#009933" uuid="899df7d7-e9a6-49fc-ad1d-f8008e3e83ea"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[QTY]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="433" y="72" width="111" height="20" backcolor="#009933" uuid="6f446abe-7891-432a-8889-210aceaf6747"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[SUBTOTAL]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="0" y="72" width="111" height="20" backcolor="#009933" uuid="4ae3e4ce-0c41-4ce4-a608-992018fa6d93"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[NAMA JASA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="141" y="72" width="111" height="20" backcolor="#009933" uuid="e5ecaf76-cce4-4982-b9f9-6133b61d0704"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[HARGA]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="172" y="10" width="100" height="20" uuid="ddd6b9df-00d1-423e-bba4-e7b5f00a3860"/>
+				<textFieldExpression><![CDATA[$P{no_transaksi}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="172" y="40" width="100" height="20" uuid="b70f8bed-531b-46c4-94b1-e452dc892986"/>
+				<textFieldExpression><![CDATA[$F{transaksi_tanggal_transaksi}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="433" y="40" width="100" height="20" uuid="3ddee6bf-8e96-4351-b637-ace0af55242d"/>
+				<textFieldExpression><![CDATA[$F{pelanggan_nama_pelanggan}]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="23" splitType="Stretch">
+			<textField>
+				<reportElement x="10" y="0" width="100" height="20" uuid="59305434-0f9e-40b5-adaa-7fca0b2ff633"/>
+				<textFieldExpression><![CDATA[$F{jenis_cucian_nama_cucian}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="141" y="0" width="100" height="20" uuid="3a6d9cba-1650-4256-a39e-b54effb36084"/>
+				<textFieldExpression><![CDATA[$F{jenis_cucian_biaya_cucian}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="433" y="0" width="100" height="20" uuid="d1c74dd2-da75-4b9d-a519-9f2895a5610e"/>
+				<textFieldExpression><![CDATA[$F{detail_penerimaan_cucian_subtotal}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="287" y="0" width="100" height="20" uuid="39265528-6642-4300-8f23-578381664a0d"/>
+				<textFieldExpression><![CDATA[$F{detail_penerimaan_cucian_jumlah}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="26" splitType="Stretch">
+			<textField>
+				<reportElement x="433" y="0" width="100" height="20" uuid="f841ac7d-623f-4b19-9640-cd3d19d07123"/>
+				<textFieldExpression><![CDATA[$F{penerimaan_cucian_total}]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>
